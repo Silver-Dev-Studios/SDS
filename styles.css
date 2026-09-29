@@ -662,10 +662,21 @@ h2 {
   animation:pulse 1.2s infinite;
 }
 
+.status-card.is-updating .status-dot {
+  background:#ff9f43;
+  animation:pulseUpdate 1.6s infinite;
+}
+
 @keyframes pulse {
   0%   { box-shadow:0 0 0 0 rgba(99,214,143,.4); }
   70%  { box-shadow:0 0 0 10px rgba(99,214,143,0); }
   100% { box-shadow:0 0 0 0 rgba(99,214,143,0); }
+}
+
+@keyframes pulseUpdate {
+  0%   { box-shadow:0 0 0 0 rgba(255,159,67,.4); }
+  70%  { box-shadow:0 0 0 10px rgba(255,159,67,0); }
+  100% { box-shadow:0 0 0 0 rgba(255,159,67,0); }
 }
 
 .status-label {
@@ -682,6 +693,7 @@ h2 {
 
 .status-card.is-up .status-label { color:#63d68f; border-color:rgba(99,214,143,.3); }
 .status-card.is-down .status-label { color:#ff6b6b; border-color:rgba(255,107,107,.3); }
+.status-card.is-updating .status-label { color:#ff9f43; border-color:rgba(255,159,67,.3); }
 
 .status-detail {
   color:var(--text-dim);

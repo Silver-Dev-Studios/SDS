@@ -4,6 +4,15 @@
 
   var NEWS = [
     {
+      id: 'advanced-identity-beta',
+      date: '2025-08-18',
+      type: 'product',
+      title: 'Introducing Advanced Identity beta for Identity Pro users',
+      excerpt: 'Identity Pro users can now try Advanced Identity - a deeper identity layer for profiles that need more room to be themselves.',
+      body: 'Today we are opening the Advanced Identity beta to Identity Pro users. Advanced Identity takes your profile a step further: richer layouts, deeper customization, and more ways to make your page feel unmistakably yours. Identity Pro users can opt in from their dashboard and start building right away. This is an early beta - expect rough edges, evolving tools, and a lot of iteration. Tell us what breaks, what shines, and what you want next. Advanced Identity is the biggest step for identities.dev since launch - and it is only the beginning.',
+      tags: ['Product', 'Beta', 'Announcement']
+    },
+    {
       id: 'identities-launch',
       date: '2025-08-14',
       type: 'product',
@@ -217,6 +226,7 @@
     card.classList.toggle("is-up", state === "up");
     card.classList.toggle("is-down", state === "down");
     card.classList.toggle("is-checking", state === "checking");
+    card.classList.toggle("is-updating", state === "updating");
     var labelEl = card.querySelector(".status-label");
     if (labelEl) labelEl.textContent = label;
   }
@@ -225,12 +235,9 @@
     var statusCards = document.querySelectorAll("[data-status-card]");
     if (!statusCards.length) return;
 
+    setStatus(statusCards[0], "updating", "UPDATING");
     setStatus(statusCards[1], "up", "OPERATIONAL");
     setStatus(statusCards[2], "up", "OPERATIONAL (" + NEWS.length + " ITEMS)");
-
-    fetch("https://identities-dev.com", { method: "GET", mode: "no-cors", cache: "no-store" })
-      .then(function () { setStatus(statusCards[0], "up", "REACHABLE"); })
-      .catch(function () { setStatus(statusCards[0], "down", "UNREACHABLE"); });
   }
   runStatusChecks();
 })();
