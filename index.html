@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SDS — Silver Dev Studios</title>
+  <meta name="description" content="Overview site for Silver Dev Studios: the studio behind identities.dev. Products, news, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="SDS home">
+      <span class="brand-mark" aria-hidden="true">
+        <i>S</i><i>D</i><i>S</i>
+      </span>
+      <span class="brand-text">
+        <strong>Silver Dev Studios</strong>
+        <small id="brand-sub">OVERVIEW</small>
+      </span>
+    </a>
+
+    <nav class="tabs" role="tablist" aria-label="Site sections">
+      <button class="tab is-active" id="tab-home" role="tab" aria-selected="true" aria-controls="panel-home" data-panel="home">
+        Home
+      </button>
+      <button class="tab" id="tab-products" role="tab" aria-selected="false" aria-controls="panel-products" data-panel="products">
+        Products <span class="tab-dot" aria-hidden="true"></span>
+      </button>
+      <button class="tab" id="tab-news" role="tab" aria-selected="false" aria-controls="panel-news" data-panel="news">
+        News <span class="tab-badge" id="news-count" aria-hidden="true">0</span>
+      </button>
+    </nav>
+
+    <a class="cta" href="https://identities-dev.com" target="_blank" rel="noopener">
+      identities.dev <span aria-hidden="true">↗</span>
+    </a>
+  </header>
+
+  <main>
+    <!-- ============ HOME ============ -->
+    <section class="panel is-active" id="panel-home" role="tabpanel" aria-labelledby="tab-home" data-panel="home">
+      <div class="hero">
+        <p class="eyebrow">Silver Dev Studios <span aria-hidden="true">//</span> est. 2025</p>
+        <h1>We build digital <em>identities</em> that feel like <em>you</em>.</h1>
+        <p class="hero-sub">
+          SDS is a small studio crafting profile tools, web experiences, and tiny
+          utilities with obsessive attention to detail. Our flagship product is
+          <a href="https://identities-dev.com" target="_blank" rel="noopener">identities.dev</a> —
+          a link-in-bio profile with more room to be yourself.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#products">See the product</a>
+          <a class="btn btn-ghost" href="#news">Latest news</a>
+        </div>
+      </div>
+
+      <div class="hero-metrics" aria-label="Studio highlights">
+        <div class="metric">
+          <span class="metric-num" data-count="1">0</span>
+          <span class="metric-label">flagship product</span>
+        </div>
+        <div class="metric">
+          <span class="metric-num" data-count="100">0</span>
+          <span class="metric-label">% hand-crafted</span>
+        </div>
+        <div class="metric">
+          <span class="metric-num" data-count="1">0</span>
+          <span class="metric-label">small studio</span>
+        </div>
+        <div class="metric">
+          <span class="metric-num" data-count="3">0</span>
+          <span class="metric-label">letters in SDS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCTS ============ -->
+    <section class="panel" id="panel-products" role="tabpanel" aria-labelledby="tab-products" data-panel="products" hidden>
+      <header class="panel-head">
+        <p class="eyebrow">Products <span aria-hidden="true">//</span> flagship</p>
+        <h2>Made by SDS</h2>
+        <p class="panel-lead">One product out today, more on the drawing board.</p>
+      </header>
+
+      <article class="product-card" id="identities">
+        <div class="product-art" aria-hidden="true">
+          <div class="id-card">
+            <span class="id-chip">PROFILE</span>
+            <div class="id-avatar"><span>ID</span></div>
+            <div class="id-lines"><i></i><i></i><i></i></div>
+            <div class="id-links"><i class="filled"></i><i class="filled"></i><i></i></div>
+            <span class="id-stamp">identities.dev</span>
+          </div>
+        </div>
+
+        <div class="product-body">
+          <span class="product-tag">FLAGSHIP · LIVE</span>
+          <h3>identities.dev</h3>
+          <p class="product-desc">
+            A profile-making website that acts as a link-in-bio with more customization
+            than Linktree, Carrd, or even Discord. Showcase who you are, share your links,
+            customize your page — and build an identity that feels like you.
+          </p>
+          <ul class="product-features">
+            <li>Personalized profiles, not just usernames</li>
+            <li>Deep customization options</li>
+            <li>Built for real people, not bots</li>
+          </ul>
+          <div class="product-actions">
+            <a class="btn btn-primary" href="https://identities-dev.com" target="_blank" rel="noopener">Visit identities.dev <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost" href="#news">Product news</a>
+          </div>
+        </div>
+      </article>
+
+      <p class="more-note">More products are in the works — check the <a href="#news">News tab</a> for announcements.</p>
+    </section>
+
+    <!-- ============ NEWS ============ -->
+    <section class="panel" id="panel-news" role="tabpanel" aria-labelledby="tab-news" data-panel="news" hidden>
+      <header class="panel-head">
+        <p class="eyebrow">News <span aria-hidden="true">//</span> updates</p>
+        <h2>Studio feed</h2>
+        <p class="panel-lead">Product releases, studio updates, and behind-the-scenes.</p>
+      </header>
+
+      <div class="news-list" id="news-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Silver Dev Studios. All rights reserved.</p>
+    <p class="footer-links">
+      <a href="https://identities-dev.com" target="_blank" rel="noopener">identities.dev</a>
+      ·
+      <a href="#home">Back to top </a>
+    </p>
+  </footer>
+
+  <div class="modal" id="news-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card">
+      <button class="modal-close" data-close aria-label="Close">✕</button>
+      <p class="eyebrow" id="modal-date"></p>
+      <h2 id="modal-title"></h2>
+      <p class="modal-tags" id="modal-tags"></p>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
