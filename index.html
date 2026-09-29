@@ -31,6 +31,7 @@
       <button class="tab" id="tab-products" role="tab" aria-selected="false" aria-controls="panel-products" data-panel="products">
         Products <span class="tab-dot" aria-hidden="true"></span>
       </button>
+      <button class="tab" id="tab-status" role="tab" aria-selected="false" aria-controls="panel-status" data-panel="status">Status</button>
       <button class="tab" id="tab-news" role="tab" aria-selected="false" aria-controls="panel-news" data-panel="news">
         News <span class="tab-badge" id="news-count" aria-hidden="true">0</span>
       </button>
@@ -46,12 +47,13 @@
     <section class="panel is-active" id="panel-home" role="tabpanel" aria-labelledby="tab-home" data-panel="home">
       <div class="hero">
         <p class="eyebrow">Silver Dev Studios <span aria-hidden="true">//</span> est. 2025</p>
-        <h1>We build digital <em>identities</em> that feel like <em>you</em>.</h1>
+        <h1>We build things that feel like <em>you</em>.</h1>
         <p class="hero-sub">
-          SDS is a small studio crafting profile tools, web experiences, and tiny
-          utilities with obsessive attention to detail. Our flagship product is
+          SDS is a small studio crafting more than profiles:
+          web tools, apps, and experiences at
+          a human scale. Our first product is
           <a href="https://identities-dev.com" target="_blank" rel="noopener">identities.dev</a> —
-          a link-in-bio profile with more room to be yourself.
+          but this studio is just getting started.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#products">See the product</a>
@@ -84,7 +86,7 @@
       <header class="panel-head">
         <p class="eyebrow">Products <span aria-hidden="true">//</span> flagship</p>
         <h2>Made by SDS</h2>
-        <p class="panel-lead">One product out today, more on the drawing board.</p>
+        <p class="panel-lead">Products out now, and on the drawing board — identities.dev is first, more ships soon.</p>
       </header>
 
       <article class="product-card" id="identities">
@@ -118,7 +120,7 @@
         </div>
       </article>
 
-      <p class="more-note">More products are in the works — check the <a href="#news">News tab</a> for announcements.</p>
+      <p class="more-note">More products are in the works — watch the <a href="#status">Status tab</a> for what is live, and the <a href="#news">News tab</a> for announcements.</p>
     </section>
 
     <!-- ============ NEWS ============ -->
@@ -130,6 +132,44 @@
       </header>
 
       <div class="news-list" id="news-list" aria-live="polite"></div>
+    </section>
+    <!-- ============ STATUS ============ -->
+    <section class="panel" id="panel-status" role="tabpanel" aria-labelledby="tab-status" data-panel="status" hidden>
+      <header class="panel-head">
+        <p class="eyebrow">Status <span aria-hidden="true">//</span> live</p>
+        <h2>System status</h2>
+        <p class="panel-lead">Live health of SDS services, updated on load.</p>
+      </header>
+
+      <div class="status-grid">
+        <article class="status-card is-up" data-status-card>
+          <div class="status-card-head">
+            <span class="status-dot" aria-hidden="true"></span>
+            <h3>identities.dev</h3>
+            <span class="status-label">CHECKING</span>
+          </div>
+          <p class="status-detail">Profile-making / link-in-bio product</p>
+          <a class="status-link" href="https://identities-dev.com" target="_blank" rel="noopener">identities-dev.com <span aria-hidden="true">↗</span></a>
+        </article>
+
+        <article class="status-card is-up" data-status-card>
+          <div class="status-card-head">
+            <span class="status-dot" aria-hidden="true"></span>
+            <h3>SDS overview site</h3>
+            <span class="status-label">CHECKING</span>
+          </div>
+          <p class="status-detail">This site — should be up, you are reading it.</p>
+        </article>
+
+        <article class="status-card" data-status-card>
+          <div class="status-card-head">
+            <span class="status-dot" aria-hidden="true"></span>
+            <h3>News feed</h3>
+            <span class="status-label" id="status-news-label">CHECKING</span>
+          </div>
+          <p class="status-detail" id="status-news-detail">Waiting for feed...</p>
+        </article>
+      </div>
     </section>
   </main>
 

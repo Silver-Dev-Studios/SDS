@@ -9,7 +9,7 @@
       type: 'product',
       title: 'identities.dev has launched',
       excerpt: 'After months of tinkering, we shipped identities.dev - our profile-making website built to be a link-in-bio with more room to be yourself.',
-      body: 'After months of tinkering, we finally shipped identities.dev. Our goal was simple: a link-in-bio profilewith more customization than the usual platforms - more room to show who you actually are. The first public build is live today. Profiles are public by default, editable in seconds,and every page is a tiny work of art. We have big plans for where this goes next. Launch build of identities.dev. Profile editor with live preview. Custom link cards, themes,and styling presets. Head over to identities-dev.com to make your own.',
+      body: 'After months of tinkering, we finally shipped identities.dev. Our goal was simple: a link-in-bio profile with more customization than the usual platforms - more room to show who you actually are. The first public build is live today. Profiles are public by default, editable in seconds, and every page is a tiny work of art. We have big plans for where this goes next. Launch build of identities.dev. Profile editor with live preview. Custom link cards, themes, and styling presets. Head over to identities-dev.com to make your own.',
       tags: ['Product', 'Launch']
     },
     {
@@ -17,8 +17,8 @@
       date: '2025-08-01',
       type: 'studio',
       title: 'Welcome to Silver Dev Studios',
-      excerpt: 'Introducing the studio behind the projects - small team, obsessive attention to detail,and everything hand-built.',
-      body: 'Silver Dev Studios (SDS) is the small team behind the projects you will find on this site. We make profiles, tools,and little web experiences - each one hand-built. This site is the studio front door: products live under the Products tab,and all announcements, releases,and behind-the-scenes posts now surface right here in News. If you ever had a profile that felt more like a username than a person - that is the exact problem we are here to solve.',
+      excerpt: 'Introducing the studio behind the projects - small team, obsessive attention to detail, and everything hand-built.',
+      body: 'Silver Dev Studios (SDS) is the small team behind the projects you will find on this site. We make profiles, tools, and little web experiences - each one hand-built. This site is the studio front door: products live under the Products tab, and all announcements, releases, and behind-the-scenes posts now surface right here in News. If you ever had a profile that felt more like a username than a person - that is the exact problem we are here to solve.',
       tags: ['Studio', 'Announcement']
     },
     {
@@ -26,8 +26,8 @@
       date: '2025-07-18',
       type: 'product',
       title: 'identities.dev enters beta',
-      excerpt: 'Private beta kicked off with a small crew - themes, custom links,and profile pages that actually feel like you.',
-      body: 'Before the public launch, we ran a small private beta of identities.dev. The goal was to prove that a profile page could feel less like a sterile form,and more like a page you would actually want someone to visit. Beta invited a handful of early profile makers. Ship focus: live editing, custom link cards,and page themes. Every bug found helped shape the public build. The beta directly shaped everything we launched in August - thanks to everyone who poked, prodded,and broke things.',
+      excerpt: 'Private beta kicked off with a small crew - themes, custom links, and profile pages that actually feel like you.',
+      body: 'Before the public launch, we ran a small private beta of identities.dev. The goal was to prove that a profile page could feel less like a sterile form, and more like a page you would actually want someone to visit. Beta invited a handful of early profile makers. Ship focus: live editing, custom link cards, and page themes. Every bug found helped shape the public build. The beta directly shaped everything we launched in August - thanks to everyone who poked, prodded, and broke things.',
       tags: ['Product', 'Beta']
     },
     {
@@ -35,8 +35,8 @@
       date: '2025-06-30',
       type: 'studio',
       title: 'What SDS is actually building toward',
-      excerpt: 'A quick look at the studio philosophy: small tools, real personality,and none of the usual platform bloat.',
-      body: 'Most profile and link-in-bio products chase the same playbook: maximize accounts, minimize personality. We think that is backwards. Our north star is identities.dev - a product where customization is not a premium tier, it is the point. What we build tends to be small in scope, big on craft,and allergic to bloat. Expect more tools from SDS that share that philosophy: a handful of opinions, a lot of polish,and nothing that gets in the way of expressing who you are.',
+      excerpt: 'A quick look at the studio philosophy: small tools, real personality, and none of the usual platform bloat.',
+      body: 'Most profile and link-in-bio products chase the same playbook: maximize accounts, minimize personality. We think that is backwards. Our north star is identities.dev - a product where customization is not a premium tier, it is the point. What we build tends to be small in scope, big on craft, and allergic to bloat. Expect more tools from SDS that share that philosophy: a handful of opinions, a lot of polish, and nothing that gets in the way of expressing who you are.',
       tags: ['Studio', 'Philosophy']
     }
   ];
@@ -127,7 +127,7 @@
   function renderNews() {
     newsCount.textContent = String(NEWS.length);
     newsList.innerHTML = '';
-    var sorted = NEWS.slice().sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+    var sorted = NEWS.slice().sort(function (a, b) { return +new Date(b.date + "T00:00:00Z") - +new Date(a.date + "T00:00:00Z"); });
     sorted.forEach(function (item, index) {
       var card = document.createElement('article');
       card.className = 'news-card' + (index === 0 ? ' featured' : '');
@@ -186,10 +186,10 @@
       span.textContent = tag;
       modalTags.appendChild(span);
     });
-    modalBody.innerHTML = '<p>' + item.body.split('.').join('.</p><p>') + '</p>';
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
+    modalBody.innerHTML = "<p>" + String(item.body).replace(/([.!?])(?=[A-Z])/g, "$1 ") + "</p>";
     modal.querySelector('.modal-close').focus();
+    modal.hidden = false;
+    document.body.style.overflow = "hidden";
   }
 
   modal.addEventListener('click', function (e) {
@@ -212,4 +212,25 @@
     });
   }, { threshold: CFG.threshold });
   heroObserver.observe(document.querySelector('.hero-metrics'));
+
+  function setStatus(card, state, label) {
+    card.classList.toggle("is-up", state === "up");
+    card.classList.toggle("is-down", state === "down");
+    card.classList.toggle("is-checking", state === "checking");
+    var labelEl = card.querySelector(".status-label");
+    if (labelEl) labelEl.textContent = label;
+  }
+
+  function runStatusChecks() {
+    var statusCards = document.querySelectorAll("[data-status-card]");
+    if (!statusCards.length) return;
+
+    setStatus(statusCards[1], "up", "OPERATIONAL");
+    setStatus(statusCards[2], "up", "OPERATIONAL (" + NEWS.length + " ITEMS)");
+
+    fetch("https://identities-dev.com", { method: "GET", mode: "no-cors", cache: "no-store" })
+      .then(function () { setStatus(statusCards[0], "up", "REACHABLE"); })
+      .catch(function () { setStatus(statusCards[0], "down", "UNREACHABLE"); });
+  }
+  runStatusChecks();
 })();
